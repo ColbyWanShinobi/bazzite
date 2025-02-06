@@ -64,7 +64,7 @@ jobs:
         base_name: [bazzite]
         base_image_name: [silverblue]
         target_image_flavor: [main]
-        target_nvidia_flavor: []
+        target_nvidia_flavor: [nvidia, nvidia-open]
         fedora_version: [41]
         include:
           - fedora_version: 41
