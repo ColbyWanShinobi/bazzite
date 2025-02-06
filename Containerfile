@@ -327,8 +327,6 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     dnf5 -y --setopt=install_weak_deps=False install \
         steam \
         lutris && \
-    dnf5 -y remove \
-        gamemode && \
     curl -Lo /tmp/latencyflex.tar.xz $(curl https://api.github.com/repos/ishitatsuyuki/LatencyFleX/releases/latest | jq -r '.assets[] | select(.name| test(".*.tar.xz$")).browser_download_url') && \
     mkdir -p /tmp/latencyflex && \
     tar --no-same-owner --no-same-permissions --no-overwrite-dir --strip-components 1 -xvf /tmp/latencyflex.tar.xz -C /tmp/latencyflex && \
