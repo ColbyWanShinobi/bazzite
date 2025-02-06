@@ -196,8 +196,7 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     dnf5 -y remove \
         ublue-os-update-services \
         firefox \
-        firefox-langpacks \
-        htop && \
+        firefox-langpacks && \
     /ctx/cleanup
 
 # Install new packages
@@ -389,14 +388,11 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5 \
             gnome-shell-extension-appindicator \
             gnome-shell-extension-user-theme \
             gnome-shell-extension-gsconnect \
-            gnome-shell-extension-compiz-windows-effect \
-            gnome-shell-extension-compiz-alike-magic-lamp-effect \
             gnome-shell-extension-coverflow-alt-tab \
             gnome-shell-extension-just-perfection \
             gnome-shell-extension-blur-my-shell \
             gnome-shell-extension-hanabi \
             gnome-shell-extension-bazzite-menu \
-            gnome-shell-extension-hotedge \
             gnome-shell-extension-caffeine \
             rom-properties-gtk3 \
             ibus-mozc \
@@ -434,6 +430,22 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     tar --zstd -cvf /usr/share/homebrew.tar.zst /home/linuxbrew/.linuxbrew && \
     curl -Lo /usr/share/bash-prexec https://raw.githubusercontent.com/ublue-os/bash-preexec/master/bash-preexec.sh &&\
     /ctx/cleanup
+
+# blueox-os #############################################
+RUN --mount=type=cache,dst=/var/cache/libdnf5 \
+    --mount=type=cache,dst=/var/cache/rpm-ostree \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
+    dnf5 -y config-manager addrepo --from-repofile=https://copr.fedorainfracloud.org/coprs/faugus/faugus-launcher/repo/fedora-%OS_VERSION%/faugus-faugus-launcher-fedora-$(rpm -E %fedora).repo && \
+    dnf5 -y install \
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+        https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64 && \
+    dnf5 -y install \
+        faugus-launcher \
+        gnome-session-xsession \
+        podman-compose \
+        qdirstat
+# blueox-os #############################################
 
 # Cleanup & Finalize
 COPY system_files/overrides /
