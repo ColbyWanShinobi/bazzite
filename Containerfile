@@ -436,7 +436,7 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     --mount=type=cache,dst=/var/cache/rpm-ostree \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
-    dnf5 -y config-manager addrepo --from-repofile=https://copr.fedorainfracloud.org/coprs/faugus/faugus-launcher/repo/fedora-${FEDORA_MAJOR_VERSION}/faugus-faugus-launcher-fedora-$(rpm -E %fedora).repo && \
+    dnf5 -y config-manager addrepo --from-repofile=https://copr.fedorainfracloud.org/coprs/faugus/faugus-launcher/repo/fedora-${FEDORA_MAJOR_VERSION}/faugus-faugus-launcher-fedora-${FEDORA_MAJOR_VERSION}.repo && \
     dnf5 -y install \
         https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-${FEDORA_MAJOR_VERSION}.noarch.rpm \
         https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64 && \
