@@ -439,7 +439,7 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     dnf5 -y config-manager addrepo --from-repofile=https://copr.fedorainfracloud.org/coprs/faugus/faugus-launcher/repo/fedora-${FEDORA_MAJOR_VERSION}/faugus-faugus-launcher-fedora-${FEDORA_MAJOR_VERSION}.repo && \
     dnf5 -y install \
         https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-${FEDORA_MAJOR_VERSION}.noarch.rpm \
-        https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64 && \
+        "https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64" && \
     dnf5 -y install \
         faugus-launcher \
         gnome-session-xsession \
